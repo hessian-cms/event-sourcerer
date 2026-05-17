@@ -1,0 +1,30 @@
+{
+  "name": "event-sourcerer",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/config/*",
+    "packages/lib/*"
+  ],
+  "description": "Event Sourcing handler for TypeScript",
+  "homepage": "https://github.com/hessian-cms/event-sourcerer#readme",
+  "bugs": {
+    "url": "https://github.com/hessian-cms/event-sourcerer/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hessian-cms/event-sourcerer.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "vitest": "^4.1.6",
+    "@vitest/coverage-v8": "^4.1.6"
+  },
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "build:mutex": "npm run build --workspace=@event-sourcerer/mutex",
+
+    "test": "vitest run",
+    "test:watch": "vitest"
+  }
+}

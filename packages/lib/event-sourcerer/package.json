@@ -1,0 +1,17 @@
+{
+  "name": "@event-sourcerer/core",
+  "version": "1.0.0",
+  "license": "MIT",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json"
+  },
+  "dependencies": {
+    "@event-sourcerer/mutex": "*"
+  },
+  "devDependencies": {
+    "@event-sourcerer/ts-config": "*"
+  }
+}
