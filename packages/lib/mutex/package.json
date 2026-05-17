@@ -6,9 +6,11 @@
     ".": "./src/index.ts"
   },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "lint": "eslint ./src --ext .ts"
   },
   "devDependencies": {
-    "@event-sourcerer/ts-config": "*"
+    "@event-sourcerer/ts-config": "*",
+    "@event-sourcerer/lint-config": "*"
   }
 }

@@ -1,0 +1,15 @@
+{
+  "name": "@event-sourcerer/lint-config",
+  "version": "1.0.0",
+  "description": "Configuration for eslint",
+  "license": "MIT",
+  "exports": {
+    ".": "./eslint.config.mjs"
+  },
+  "devDependencies": {
+    "@event-sourcerer/ts-config": "*",
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.4.0",
+    "typescript-eslint": "^8.59.3"
+  }
+}

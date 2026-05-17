@@ -24,6 +24,9 @@
     "build": "npm run build --workspaces --if-present",
     "build:mutex": "npm run build --workspace=@event-sourcerer/mutex",
 
+    "lint": "npm run lint --workspaces --if-present",
+    "lint:mutex": "npm run lint --workspace=@event-sourcerer/mutex",
+
     "test": "vitest run",
     "test:watch": "vitest"
   }
