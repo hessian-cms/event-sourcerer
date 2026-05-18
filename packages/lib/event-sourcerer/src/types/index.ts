@@ -1,5 +1,0 @@
-export * from "./EventData.type"
-export * from "./EventType.type"
-export * from "./EventChain.abstract"
-export * from "./EventTypeStore.abstract"
-export * from "./implementation"

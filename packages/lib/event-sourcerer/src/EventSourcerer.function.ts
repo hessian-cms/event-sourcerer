@@ -1,19 +1,14 @@
-import { Mutex } from "@event-sourcerer/mutex";
-import { EventType, EventTypeStore, EventTypeStoreInMemory } from "./types";
+import { eventStore, EventStore } from "./EventStore.function";
+import { EventHandler } from "./EventHandler.function";
 
-export async function eventSourcerer(eventConfigurationStore: EventTypeStore = new EventTypeStoreInMemory()) {
-    const mutex = new Mutex();
+export type EventSourcerer = Awaited<ReturnType<typeof eventSourcerer>>;
 
-    async function addEvent(name: string, configuration: EventType): Promise < void> {
-        await eventConfigurationStore.addEventType(name, configuration);
-    }
-
-    async function removeEvent(name: string): Promise<void> {
-        await eventConfigurationStore.removeEventType(name);
-    }
+export async function eventSourcerer(store: Promise<EventStore> = eventStore()) {
+    const s = await store;
 
     return {
-        addEvent: mutex.lock(addEvent.bind(null)),
-        removeEvent: mutex.lock(removeEvent.bind(null))
+        addEvent: s.addEvent,
+        listEvents: s.listEvents,
+        removeEvent: s.removeEvent
     }
 }
