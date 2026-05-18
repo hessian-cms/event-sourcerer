@@ -1,4 +1,4 @@
-import { Event } from "../Event.type";
+import { Event } from "../EventData.type";
 import { EventChain } from "../EventChain.abstract";
 
 /**

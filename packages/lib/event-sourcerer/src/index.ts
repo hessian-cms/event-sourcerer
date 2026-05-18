@@ -1,5 +1,6 @@
 export * from "./errors"
 
-export * from "./EventSourcerer.class"
-export * from "./types/Event.type"
+export * from "./EventSourcerer.function"
+
+export * from "./types/EventData.type"
 export * from "./types/EventType.type"
