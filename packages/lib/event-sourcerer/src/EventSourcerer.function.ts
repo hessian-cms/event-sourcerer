@@ -1,5 +1,4 @@
 import { eventStore, EventStore } from "./EventStore.function";
-import { EventHandler } from "./EventHandler.function";
 
 export type EventSourcerer = Awaited<ReturnType<typeof eventSourcerer>>;
 

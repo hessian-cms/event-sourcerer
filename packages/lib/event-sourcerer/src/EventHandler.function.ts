@@ -1,5 +1,4 @@
 import { Mutex } from "@event-sourcerer/mutex";
-import { EventSourcererError } from "./errors";
 import { EventSourcererErrorEventHandlerDeactivated } from "./errors/EventSourcererErrorEventHandlerDeactivated.error";
 
 export type EventHandler = Awaited<ReturnType<typeof eventHandler>>;
@@ -12,7 +11,7 @@ export async function eventHandler(eventName: string) {
         active = false;
     }
 
-    async function triggerEvent(payload: any): Promise<any> {
+    async function triggerEvent<T>(payload: T): Promise<T> {
         if(!active) {
             throw new EventSourcererErrorEventHandlerDeactivated(`Event ${eventName} is deactivated and cannot be triggered.`)
         }
