@@ -1,4 +1,9 @@
 /**
+ * A generic utility type for a generic function return a Promise
+ */
+export type GenericPromiseFunction = <T extends (...params: Parameters<T>) => Promise<Awaited<ReturnType<T>>>>(...params: Parameters<T>) => Promise<Awaited<ReturnType<T>>>;
+
+/**
  * A simple mutex implementation for synchronizing asynchronous operations.
  */
 export class Mutex {
@@ -11,7 +16,7 @@ export class Mutex {
      * @param fn 
      * @returns 
      */
-    lock<T extends (...params: Parameters<T>) => Promise<Awaited<ReturnType<T>>>>(fn: T): T {
+    lock<T extends GenericPromiseFunction>(fn: T): T {
         return (async (...params: Parameters<T>): Promise<Awaited<ReturnType<T>>> => {
             const localPromise = this.withResolver.promise;
             const { resolve } = this.withResolver = Promise.withResolvers<void>();
