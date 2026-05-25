@@ -17,11 +17,11 @@ type EnsureJSONArgs<Args extends any[]> = {
 export type EventEntry = { eventName: string, time: number, input: JSONValue }
 export type EventSourcerer = Awaited<ReturnType<typeof eventSourcerer>>;
 
-export async function eventSourcerer() {
+export async function eventSourcerer(chain: Array<EventEntry> = []) {
     const mutex = new Mutex();
     // eslint-disable-next-line
     const events: Record<string, Function> = {};
-    const eventChain: Array<EventEntry> = [];
+    const eventChain: Array<EventEntry> = chain;
 
     async function mountEvent<
         // eslint-disable-next-line
@@ -56,8 +56,21 @@ export async function eventSourcerer() {
         return eventChain;
     }
 
+    async function build() {
+        const chain = await getEventChain();
+        for(const entry of chain) {
+            const {eventName, input} =  entry;
+            const fn = events[eventName];
+            if(!fn) {
+                throw new EventSourcererError(`Event function must '${eventName}' is not defined.`);
+            }
+            await fn(...input as JSONValue[]);
+        }
+    }
+
     return {
         mountEvent,
-        getEventChain
+        getEventChain,
+        build
     }
 }
